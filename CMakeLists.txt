@@ -69,8 +69,8 @@ target_include_directories(
 # ---- Configure pkg-config ----
 set(PREFIX ${CMAKE_INSTALL_PREFIX})
 set(UPSTREAM_VER "ZERO")
-set(HOST_MULTIARCH "${CMAKE_INSTALL_LIBDIR}")
-set(INCLUDE "${CMAKE_INSTALL_INCLUDEDIR}")
+set(HOST_MULTIARCH "${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}")
+set(INCLUDE "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}")
 set(EXTRA_LIBS "")
 # get_target_property(EXTRA_LIBS ${PROJECT_NAME} LINK_LIBRARIES)
 configure_file(
@@ -86,7 +86,7 @@ install(FILES "${argon2_BINARY_DIR}/libargon2.pc"
 
 # the location where the project's version header will be placed should match the project's regular
 # header paths
-string(TOLOWER ${PROJECT_NAME}/version.h VERSION_HEADER_LOCATION)
+string(TOLOWER version.h VERSION_HEADER_LOCATION)
 
 packageProject(
   NAME ${PROJECT_NAME}
@@ -94,7 +94,7 @@ packageProject(
   NAMESPACE ${PROJECT_NAME}
   BINARY_DIR ${PROJECT_BINARY_DIR}
   INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include
-  INCLUDE_DESTINATION include
+  INCLUDE_DESTINATION include/${PROJECT_NAME}
   VERSION_HEADER "${VERSION_HEADER_LOCATION}"
   DISABLE_VERSION_SUFFIX YES
 )
