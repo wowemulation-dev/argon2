@@ -35,18 +35,18 @@ find_package(PkgConfig)
 # Note: globbing sources is considered bad practice as CMake's generators may not detect new files
 # automatically. Keep that in mind when changing files, or explicitly mention them here.
 set(headers
-  "${CMAKE_SOURCE_DIR}/include/argon2.h"
+  "${CMAKE_CURRENT_SOURCE_DIR}/include/argon2.h"
 )
 set(sources
-  "${CMAKE_SOURCE_DIR}/src/argon2.c"
-  "${CMAKE_SOURCE_DIR}/src/core.c"
-  "${CMAKE_SOURCE_DIR}/src/blake2/blake2b.c"
-  "${CMAKE_SOURCE_DIR}/src/thread.c"
-  "${CMAKE_SOURCE_DIR}/src/encoding.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/argon2.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/core.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/blake2/blake2b.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/thread.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/encoding.c"
 )
 
 list(APPEND sources
-  "${CMAKE_SOURCE_DIR}/src/ref.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/ref.c"
 )
 
 add_library(${PROJECT_NAME} ${headers} ${sources})
@@ -74,11 +74,11 @@ set(INCLUDE "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}")
 set(EXTRA_LIBS "")
 # get_target_property(EXTRA_LIBS ${PROJECT_NAME} LINK_LIBRARIES)
 configure_file(
-        "${argon2_SOURCE_DIR}/libargon2.pc.in"
-        "${argon2_BINARY_DIR}/libargon2.pc"
+        "${CMAKE_CURRENT_SOURCE_DIR}/libargon2.pc.in"
+        "${CMAKE_CURRENT_BINARY_DIR}/libargon2.pc"
         @ONLY)
 
-install(FILES "${argon2_BINARY_DIR}/libargon2.pc"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/libargon2.pc"
   DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig")
 
 # ---- Create an installable target ----
